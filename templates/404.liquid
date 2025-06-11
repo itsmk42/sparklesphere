@@ -1,0 +1,57 @@
+{% comment %}
+  404 Error Page Template
+  This template is displayed when a page is not found
+{% endcomment %}
+
+<div class="template-404">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item medium-up--five-twelfths medium-up--push-one-twelfth">
+        <div class="text-center">
+          <h1 class="h2">{{ 'general.404.title' | t }}</h1>
+          <p class="h4">{{ 'general.404.subtext_html' | t }}</p>
+          
+          <div class="rte">
+            <p>{{ 'general.404.link' | t }}</p>
+          </div>
+          
+          <a href="{{ routes.root_url }}" class="btn">
+            {{ 'general.404.back_to_home' | t | default: 'Back to Home' }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.template-404 {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.template-404 h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.template-404 p {
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+.template-404 .btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.template-404 .btn:hover {
+  background-color: #0056b3;
+}
+</style>

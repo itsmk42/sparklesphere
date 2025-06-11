@@ -1,0 +1,212 @@
+{% comment %}
+  Cart Template
+  Displays shopping cart contents
+{% endcomment %}
+
+<div class="template-cart">
+  <div class="page-width">
+    <h1 class="cart-title">{{ 'sections.cart.title' | t | default: 'Your Cart' }}</h1>
+    
+    {% if cart.item_count > 0 %}
+      <form action="{{ routes.cart_url }}" method="post" novalidate class="cart">
+        <div class="cart-items">
+          {% for item in cart.items %}
+            <div class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
+              <div class="cart-item__media">
+                {% if item.image %}
+                  {{ item.image | image_url: width: 150 | image_tag: 
+                     alt: item.image.alt | default: item.product.title,
+                     class: 'cart-item__image' }}
+                {% endif %}
+              </div>
+              
+              <div class="cart-item__details">
+                <h3 class="cart-item__name">
+                  <a href="{{ item.product.url }}">{{ item.product.title }}</a>
+                </h3>
+                
+                {% unless item.product.has_only_default_variant %}
+                  <div class="cart-item__variant">
+                    {{ item.variant.title }}
+                  </div>
+                {% endunless %}
+                
+                <div class="cart-item__price-wrapper">
+                  <div class="cart-item__price">
+                    {{ item.original_price | money }}
+                  </div>
+                </div>
+              </div>
+              
+              <div class="cart-item__quantity">
+                <label for="Quantity-{{ item.index | plus: 1 }}" class="visually-hidden">
+                  {{ 'products.product.quantity.label' | t }}
+                </label>
+                <input class="quantity__input"
+                       type="number"
+                       name="updates[]"
+                       value="{{ item.quantity }}"
+                       min="0"
+                       aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                       id="Quantity-{{ item.index | plus: 1 }}"
+                       data-index="{{ item.index | plus: 1 }}">
+              </div>
+              
+              <div class="cart-item__totals">
+                <div class="cart-item__price-wrapper">
+                  <span class="cart-item__price">
+                    {{ item.original_line_price | money }}
+                  </span>
+                </div>
+              </div>
+              
+              <div class="cart-item__remove">
+                <a href="{{ item.url_to_remove }}" class="button button--tertiary" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
+                  {{ 'sections.cart.remove' | t | default: 'Remove' }}
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        
+        <div class="cart-footer">
+          <div class="cart-note">
+            <label for="Cart-note">{{ 'sections.cart.note' | t | default: 'Order notes' }}</label>
+            <textarea class="text-area field__input" name="note" id="Cart-note" placeholder="{{ 'sections.cart.note' | t }}">{{ cart.note }}</textarea>
+          </div>
+          
+          <div class="cart-summary">
+            <div class="cart-subtotal">
+              <span class="cart-subtotal__title">{{ 'sections.cart.subtotal' | t | default: 'Subtotal' }}</span>
+              <span class="cart-subtotal__price">{{ cart.total_price | money }}</span>
+            </div>
+            
+            <div class="cart-actions">
+              <button type="submit" name="update" class="cart-update-button button button--secondary">
+                {{ 'sections.cart.update' | t | default: 'Update Cart' }}
+              </button>
+              
+              <button type="submit" name="add" class="btn product-form__cart-submit button button--full-width button--primary" form="product-form-installment">
+                <span>{{ 'sections.cart.checkout' | t | default: 'Check out' }}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    {% else %}
+      <div class="cart-empty">
+        <h2>{{ 'sections.cart.empty' | t | default: 'Your cart is empty' }}</h2>
+        <a href="{{ routes.all_products_collection_url }}" class="button">
+          {{ 'general.continue_shopping' | t | default: 'Continue shopping' }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+.template-cart {
+  padding: 40px 0;
+}
+
+.cart-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 100px 1fr auto auto auto;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+.cart-item__image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.cart-item__name {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.cart-item__name a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cart-item__variant {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.cart-item__price {
+  font-weight: 600;
+}
+
+.quantity__input {
+  width: 60px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.cart-footer {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 40px;
+}
+
+.cart-summary {
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.cart-subtotal {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.cart-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.button--primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.button--secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 60px 0;
+}
+</style>
