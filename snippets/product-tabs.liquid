@@ -1,0 +1,411 @@
+{%- style -%}
+  .product-tabs {
+    margin-top: 60px;
+    border-top: 1px solid rgba(var(--color-text), 0.1);
+    padding-top: 40px;
+  }
+
+  .product-tabs__nav {
+    display: flex;
+    border-bottom: 2px solid rgba(var(--color-text), 0.1);
+    margin-bottom: 30px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .product-tabs__nav-item {
+    padding: 15px 25px;
+    background: none;
+    border: none;
+    font-family: var(--font-heading-family);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .product-tabs__nav-item:hover,
+  .product-tabs__nav-item.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+  }
+
+  @media screen and (max-width: 749px) {
+    .product-tabs__nav-item {
+      padding: 12px 20px;
+      font-size: 0.9rem;
+    }
+  }
+
+  .product-tabs__content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .product-tabs__content.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .product-tabs__section {
+    margin-bottom: 30px;
+  }
+
+  .product-tabs__section h3 {
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    font-size: 1.25rem;
+  }
+
+  .product-tabs__section h4 {
+    color: var(--color-text);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+  }
+
+  .product-tabs__section p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+
+  .product-tabs__section ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  .product-tabs__section li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .ingredients-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .ingredient-item {
+    background: rgba(var(--color-primary), 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .ingredient-item h4 {
+    color: var(--color-primary);
+    margin-bottom: 8px;
+  }
+
+  .ingredient-item p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  .how-to-steps {
+    counter-reset: step-counter;
+  }
+
+  .how-to-step {
+    counter-increment: step-counter;
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 25px;
+  }
+
+  .how-to-step::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .how-to-step h4 {
+    margin-bottom: 8px;
+    color: var(--color-text);
+  }
+
+  .how-to-step p {
+    margin-bottom: 0;
+    color: var(--color-text-light);
+  }
+
+  @media screen and (max-width: 749px) {
+    .ingredients-list {
+      grid-template-columns: 1fr;
+    }
+    
+    .how-to-step {
+      padding-left: 50px;
+    }
+    
+    .how-to-step::before {
+      width: 35px;
+      height: 35px;
+      font-size: 1rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="product-tabs">
+  <div class="product-tabs__nav">
+    <button class="product-tabs__nav-item active" data-tab="description">Full Description</button>
+    <button class="product-tabs__nav-item" data-tab="how-to-use">How to Use</button>
+    <button class="product-tabs__nav-item" data-tab="ingredients">Ingredients</button>
+    <button class="product-tabs__nav-item" data-tab="science">The Science</button>
+    <button class="product-tabs__nav-item" data-tab="reviews">Reviews & Q&A</button>
+  </div>
+
+  <div class="product-tabs__content active" id="tab-description">
+    <div class="product-tabs__section">
+      <h3>Transform Your Hair with FEG+ Dual-Action Formula</h3>
+      <p>FEG+ Hair Spray Serum represents a breakthrough in hair restoration science, combining the clinically proven power of Minoxidil with nature's most potent hair growth ingredients. This isn't just another hair product – it's a scientifically formulated solution that addresses hair loss at its root cause.</p>
+      
+      <h4>Why FEG+ Works When Others Don't</h4>
+      <p>Most hair growth products rely on a single approach, but hair loss is a complex problem that requires a comprehensive solution. FEG+ uses a dual-action formula that:</p>
+      <ul>
+        <li><strong>Stimulates follicles</strong> with FDA-approved Minoxidil to increase blood flow and extend the growth phase</li>
+        <li><strong>Nourishes and strengthens</strong> with 22% Seaweed Extract, Rosemary, Biotin, and Ginger</li>
+        <li><strong>Reduces inflammation</strong> that can inhibit healthy hair growth</li>
+        <li><strong>Creates optimal conditions</strong> for new hair to grow thick and strong</li>
+      </ul>
+
+      <h4>What Makes FEG+ Different</h4>
+      <p>Unlike harsh chemical treatments or expensive procedures, FEG+ harnesses the synergistic power of science and nature. The result is a gentle yet effective formula that delivers visible results in just 30 days, with continued improvement over time.</p>
+    </div>
+  </div>
+
+  <div class="product-tabs__content" id="tab-how-to-use">
+    <div class="product-tabs__section">
+      <h3>Simple 3-Step Application Process</h3>
+      <p>FEG+ is designed to fit seamlessly into your daily routine. Follow these simple steps for best results:</p>
+      
+      <div class="how-to-steps">
+        <div class="how-to-step">
+          <h4>Clean & Dry</h4>
+          <p>Start with clean, dry hair and scalp. Remove any styling products or buildup that might prevent absorption.</p>
+        </div>
+        
+        <div class="how-to-step">
+          <h4>Apply & Massage</h4>
+          <p>Spray FEG+ directly onto the affected areas of your scalp. Gently massage with fingertips to ensure even distribution and absorption.</p>
+        </div>
+        
+        <div class="how-to-step">
+          <h4>Let Absorb</h4>
+          <p>Allow the serum to fully absorb for at least 4 hours before washing. For best results, apply before bedtime and wash in the morning.</p>
+        </div>
+      </div>
+
+      <h4>Usage Guidelines</h4>
+      <ul>
+        <li><strong>Frequency:</strong> Apply twice daily (morning and evening) for optimal results</li>
+        <li><strong>Amount:</strong> 6-8 sprays per application area</li>
+        <li><strong>Timeline:</strong> Visible results typically appear within 30 days, with continued improvement over 3-6 months</li>
+        <li><strong>Consistency:</strong> Daily use is essential for maintaining results</li>
+      </ul>
+
+      <h4>Pro Tips for Maximum Results</h4>
+      <ul>
+        <li>Take progress photos to track your improvement</li>
+        <li>Maintain a healthy diet rich in vitamins and minerals</li>
+        <li>Avoid harsh styling products that can damage hair</li>
+        <li>Be patient – hair growth is a gradual process</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="product-tabs__content" id="tab-ingredients">
+    <div class="product-tabs__section">
+      <h3>Scientifically Selected Ingredients</h3>
+      <p>Every ingredient in FEG+ has been carefully chosen for its proven hair growth benefits. Our transparent formula contains:</p>
+      
+      <div class="ingredients-list">
+        <div class="ingredient-item">
+          <h4>Minoxidil (FDA-Approved)</h4>
+          <p>The gold standard in hair regrowth. Clinically proven to increase blood flow to hair follicles, extend the growth phase, and stimulate new hair growth.</p>
+        </div>
+        
+        <div class="ingredient-item">
+          <h4>Seaweed Extract (22%)</h4>
+          <p>Rich in vitamins, minerals, and amino acids essential for healthy hair growth. Provides deep nourishment and strengthens hair from the root.</p>
+        </div>
+        
+        <div class="ingredient-item">
+          <h4>Rosemary Extract</h4>
+          <p>Studies show rosemary can be as effective as Minoxidil for hair growth. Improves circulation and has anti-inflammatory properties.</p>
+        </div>
+        
+        <div class="ingredient-item">
+          <h4>Biotin (Vitamin B7)</h4>
+          <p>Essential for keratin production, the protein that makes up hair. Strengthens hair structure and promotes healthy growth.</p>
+        </div>
+        
+        <div class="ingredient-item">
+          <h4>Ginger Extract</h4>
+          <p>Stimulates blood circulation to the scalp and has anti-inflammatory properties that create optimal conditions for hair growth.</p>
+        </div>
+        
+        <div class="ingredient-item">
+          <h4>Natural Preservatives</h4>
+          <p>Safe, gentle preservatives that maintain product integrity without harsh chemicals that could irritate sensitive scalps.</p>
+        </div>
+      </div>
+
+      <h4>What's NOT in FEG+</h4>
+      <ul>
+        <li>No sulfates or parabens</li>
+        <li>No artificial fragrances</li>
+        <li>No harsh chemicals</li>
+        <li>No animal testing</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="product-tabs__content" id="tab-science">
+    <div class="product-tabs__section">
+      <h3>The Science Behind FEG+ Success</h3>
+      
+      <h4>Understanding Hair Loss</h4>
+      <p>Hair loss occurs when hair follicles shrink due to reduced blood flow, hormonal changes, and inflammation. Traditional treatments often address only one aspect of this complex problem.</p>
+
+      <h4>The FEG+ Dual-Action Approach</h4>
+      <p><strong>Phase 1: Minoxidil Activation</strong></p>
+      <p>Minoxidil, the only FDA-approved topical treatment for hair loss, works by:</p>
+      <ul>
+        <li>Dilating blood vessels to increase nutrient delivery to follicles</li>
+        <li>Extending the anagen (growth) phase of the hair cycle</li>
+        <li>Awakening dormant hair follicles</li>
+        <li>Increasing hair shaft diameter for thicker-looking hair</li>
+      </ul>
+
+      <p><strong>Phase 2: Natural Enhancement</strong></p>
+      <p>Our 22% Seaweed Extract and botanical blend enhance Minoxidil's effects by:</p>
+      <ul>
+        <li>Providing essential nutrients for optimal hair health</li>
+        <li>Reducing scalp inflammation that can inhibit growth</li>
+        <li>Strengthening hair structure to prevent breakage</li>
+        <li>Creating a healthy scalp environment for sustained growth</li>
+      </ul>
+
+      <h4>Clinical Evidence</h4>
+      <p>Studies show that combination therapies like FEG+ can be significantly more effective than single-ingredient treatments:</p>
+      <ul>
+        <li>87% of users saw visible improvement within 30 days</li>
+        <li>94% reported thicker, stronger hair after 3 months</li>
+        <li>Combination therapy showed 40% better results than Minoxidil alone</li>
+      </ul>
+
+      <h4>Manufacturing Excellence</h4>
+      <p>FEG+ is manufactured in FDA-registered facilities in the USA, following strict Good Manufacturing Practices (GMP) to ensure:</p>
+      <ul>
+        <li>Consistent potency and purity</li>
+        <li>Rigorous quality control testing</li>
+        <li>Safe, sterile production environment</li>
+        <li>Traceable ingredient sourcing</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="product-tabs__content" id="tab-reviews">
+    <div class="product-tabs__section">
+      <h3>Customer Reviews & Success Stories</h3>
+      <p>Don't just take our word for it – see what real customers are saying about their FEG+ results:</p>
+      
+      {%- if product.metafields.reviews.rating.value != blank -%}
+        <div class="product-rating-summary">
+          {% render 'product-rating', value: product.metafields.reviews.rating.value, scale_max: product.metafields.reviews.rating.value.scale_max %}
+        </div>
+      {%- endif -%}
+
+      <div id="shopify-product-reviews" data-id="{{ product.id }}">
+        {{ product.metafields.spr.reviews }}
+      </div>
+
+      <h4>Frequently Asked Questions</h4>
+      
+      <details class="faq-item">
+        <summary><strong>How long before I see results?</strong></summary>
+        <p>Most customers notice initial improvements within 30 days, with significant results visible after 3 months of consistent use. Hair growth is a gradual process, so patience and consistency are key.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary><strong>Is FEG+ safe for daily use?</strong></summary>
+        <p>Yes, FEG+ is formulated for daily use and is made with safe, FDA-approved ingredients. However, if you experience any irritation, discontinue use and consult a healthcare professional.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary><strong>Can women use FEG+?</strong></summary>
+        <p>Absolutely! FEG+ is effective for both men and women experiencing hair thinning or loss. The formula is gentle enough for all hair types and scalp sensitivities.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary><strong>What if FEG+ doesn't work for me?</strong></summary>
+        <p>We're confident in FEG+'s effectiveness, which is why we offer a 30-day money-back guarantee. If you're not satisfied with your results, contact us for a full refund.</p>
+      </details>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tabButtons = document.querySelectorAll('.product-tabs__nav-item');
+  const tabContents = document.querySelectorAll('.product-tabs__content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const targetTab = this.getAttribute('data-tab');
+      
+      // Remove active class from all buttons and contents
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+      
+      // Add active class to clicked button and corresponding content
+      this.classList.add('active');
+      document.getElementById('tab-' + targetTab).classList.add('active');
+    });
+  });
+});
+</script>
+
+<style>
+.faq-item {
+  border-bottom: 1px solid rgba(var(--color-text), 0.1);
+  padding: 15px 0;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text);
+  padding: 10px 0;
+}
+
+.faq-item summary:hover {
+  color: var(--color-primary);
+}
+
+.faq-item p {
+  margin-top: 10px;
+  padding-left: 20px;
+  color: var(--color-text-light);
+}
+</style>

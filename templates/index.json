@@ -1,0 +1,229 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "image": "",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false,
+        "heading": "Transform Your Hair with FEG+ Hair Spray Serum",
+        "heading_size": "h1",
+        "subheading": "Clinically proven dual-action formula combining Minoxidil with 22% Seaweed Extract for visible hair growth results in just 30 days.",
+        "button_label": "Shop Now - 30-Day Guarantee",
+        "button_link": "shopify://products/feg-plus-hair-spray-serum",
+        "button_style_secondary": false,
+        "second_button_label": "Learn More",
+        "second_button_link": "shopify://pages/our-science",
+        "second_button_style_secondary": true
+      }
+    },
+    "problem-solution": {
+      "type": "rich-text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-2",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "heading": "Hair Loss Doesn't Have to Be Permanent",
+        "heading_size": "h2",
+        "text": "<p>Millions struggle with thinning hair, receding hairlines, and loss of confidence. Traditional solutions often fall short, leaving you frustrated and hopeless.</p><p><strong>But what if there was a scientifically-backed solution that combines the proven power of Minoxidil with nature's most potent hair growth ingredients?</strong></p>",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false
+      }
+    },
+    "benefits": {
+      "type": "multicolumn",
+      "blocks": {
+        "benefit-1": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "title": "Clinically Proven Results",
+            "text": "FDA-approved Minoxidil combined with 22% Seaweed Extract delivers visible results in 30 days",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "benefit-2": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "title": "Dual-Action Formula",
+            "text": "Science meets nature - Minoxidil stimulates follicles while natural extracts nourish and strengthen",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "benefit-3": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "title": "Easy Daily Application",
+            "text": "Simple spray application fits seamlessly into your daily routine - no mess, no fuss",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "benefit-4": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "title": "Made in USA",
+            "text": "Manufactured in FDA-registered facilities with the highest quality standards and safety protocols",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "benefit-1",
+        "benefit-2",
+        "benefit-3",
+        "benefit-4"
+      ],
+      "settings": {
+        "title": "Why FEG+ Works When Others Don't",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "how-it-works": {
+      "type": "rich-text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-2",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "heading": "How FEG+ Dual-Action Formula Works",
+        "heading_size": "h2",
+        "text": "<p><strong>Step 1: Minoxidil Activation</strong><br>FDA-approved Minoxidil increases blood flow to hair follicles, extending the growth phase and awakening dormant follicles.</p><p><strong>Step 2: Natural Nourishment</strong><br>22% Seaweed Extract, Rosemary, Biotin, and Ginger provide essential nutrients, reduce inflammation, and create optimal conditions for healthy hair growth.</p><p><strong>Step 3: Visible Results</strong><br>The synergistic combination delivers faster, more comprehensive results than either ingredient alone.</p>",
+        "button_label": "View Full Ingredient List",
+        "button_link": "shopify://pages/our-science",
+        "button_style_secondary": false
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial-1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I noticed new hair growth within 3 weeks! The combination of science and natural ingredients really works.",
+            "author": "Sarah M.",
+            "author_title": "Verified Customer",
+            "star_rating": 5
+          }
+        },
+        "testimonial-2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "After trying countless products, FEG+ finally gave me the results I was looking for. My hairline is filling in beautifully.",
+            "author": "Michael R.",
+            "author_title": "3 Months of Use",
+            "star_rating": 5
+          }
+        },
+        "testimonial-3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The spray is so easy to use and doesn't leave any residue. I love that it's made in the USA with quality ingredients.",
+            "author": "Jennifer L.",
+            "author_title": "Verified Customer",
+            "star_rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "testimonial-1",
+        "testimonial-2",
+        "testimonial-3"
+      ],
+      "settings": {
+        "title": "Real Results from Real Customers",
+        "heading_size": "h2",
+        "color_scheme": "background-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "trust-badges": {
+      "type": "trust-badges",
+      "settings": {
+        "title": "Your Trust is Our Priority",
+        "show_made_in_usa": true,
+        "show_money_back_guarantee": true,
+        "show_secure_checkout": true,
+        "show_fast_shipping": true,
+        "color_scheme": "background-2",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "product-feature": {
+      "type": "featured-product",
+      "settings": {
+        "product": "feg-plus-hair-spray-serum",
+        "color_scheme": "background-1",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "text_alignment": "left",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "cta-section": {
+      "type": "rich-text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "accent-1",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "heading": "Ready to Transform Your Hair?",
+        "heading_size": "h2",
+        "text": "<p>Join thousands who have already discovered the power of FEG+ Hair Spray Serum. With our 30-day money-back guarantee, you have nothing to lose except thinning hair.</p>",
+        "button_label": "Order Now - Free Shipping",
+        "button_link": "shopify://products/feg-plus-hair-spray-serum",
+        "button_style_secondary": false
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "problem-solution",
+    "benefits",
+    "how-it-works",
+    "testimonials",
+    "trust-badges",
+    "product-feature",
+    "cta-section"
+  ]
+}
