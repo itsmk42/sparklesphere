@@ -1,0 +1,462 @@
+{% comment %}
+  Featured Product Section
+  Displays a single product with full details
+{% endcomment %}
+
+{%- assign product = section.settings.product -%}
+{%- if product == blank -%}
+  {%- assign product = collections.all.products.first -%}
+{%- endif -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="featured-product section-{{ section.id }}-padding">
+    <div class="page-width">
+      {%- if product != blank -%}
+        <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} grid grid--1-col product--mobile-hide{% if product.media.size > 0 %} grid--2-col-tablet{% endif %}">
+          <div class="grid__item product__media">
+            <div class="product__media-wrapper">
+              {%- if product.selected_or_first_available_variant.featured_media -%}
+                <div class="product__media media">
+                  {{ product.selected_or_first_available_variant.featured_media | image_url: width: 1946 | image_tag:
+                    loading: 'lazy',
+                    sizes: '(min-width: 1200px) 715px, (min-width: 990px) 55vw, (min-width: 750px) 45vw, 100vw',
+                    widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946',
+                    alt: product.selected_or_first_available_variant.featured_media.alt | default: product.title | escape
+                  }}
+                </div>
+              {%- else -%}
+                <div class="product__media media">
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+          
+          <div class="grid__item product__info">
+            <div class="product__info-wrapper">
+              <h2 class="product__title">
+                <a href="{{ product.url }}" class="full-unstyled-link">
+                  {{ product.title | escape }}
+                </a>
+              </h2>
+              
+              <div class="product__price">
+                <div class="price price--large">
+                  {%- if product.compare_at_price > product.price -%}
+                    <span class="price__regular">
+                      <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+                      <span class="price-item price-item--regular">
+                        {{ product.compare_at_price | money }}
+                      </span>
+                    </span>
+                    <span class="price__sale">
+                      <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
+                      <span class="price-item price-item--sale price-item--last">
+                        {{ product.price | money }}
+                      </span>
+                    </span>
+                  {%- else -%}
+                    <span class="price__regular">
+                      <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+                      <span class="price-item price-item--regular">
+                        {{ product.price | money }}
+                      </span>
+                    </span>
+                  {%- endif -%}
+                </div>
+              </div>
+              
+              {%- if product.description != blank -%}
+                <div class="product__description rte">
+                  {{ product.description | truncate: 200 }}
+                </div>
+              {%- endif -%}
+              
+              <div class="product__buttons">
+                {%- if product.available -%}
+                  <a href="{{ product.url }}" class="button button--full-width button--primary">
+                    {{ 'products.product.add_to_cart' | t | default: 'Add to cart' }}
+                  </a>
+                {%- else -%}
+                  <button type="button" class="button button--full-width button--secondary" disabled>
+                    {{ 'products.product.sold_out' | t | default: 'Sold out' }}
+                  </button>
+                {%- endif -%}
+                
+                <a href="{{ product.url }}" class="button button--full-width button--secondary">
+                  {{ 'products.product.view_full_details' | t | default: 'View full details' }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- else -%}
+        <div class="featured-product-placeholder">
+          <div class="placeholder-content">
+            <h2>Featured Product</h2>
+            <p>Add a product to showcase here</p>
+            <div class="placeholder-image">
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .featured-product .product {
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .product--left .product__media {
+    order: -1;
+  }
+
+  .product--right .product__media {
+    order: 1;
+  }
+
+  .product__media-wrapper {
+    position: relative;
+  }
+
+  .product__media img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .product__info-wrapper {
+    padding: 2rem 0;
+  }
+
+  .product__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .product__title a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .product__title a:hover {
+    color: #007bff;
+  }
+
+  .product__price {
+    margin-bottom: 1.5rem;
+  }
+
+  .price--large {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .price__sale .price-item--sale {
+    color: #e74c3c;
+  }
+
+  .price__regular .price-item--regular {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 10px;
+  }
+
+  .product__description {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    color: #666;
+  }
+
+  .product__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .button--primary {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .button--primary:hover {
+    background-color: #0056b3;
+  }
+
+  .button--secondary {
+    background-color: transparent;
+    color: #007bff;
+    border-color: #007bff;
+  }
+
+  .button--secondary:hover {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .button--full-width {
+    width: 100%;
+  }
+
+  .button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .featured-product-placeholder {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  .placeholder-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #666;
+  }
+
+  .placeholder-content p {
+    color: #999;
+    margin-bottom: 2rem;
+  }
+
+  .placeholder-image {
+    max-width: 300px;
+    margin: 0 auto;
+    opacity: 0.3;
+  }
+
+  .placeholder-svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0 0 0 0);
+    word-wrap: normal !important;
+  }
+
+  @media screen and (min-width: 750px) {
+    .product {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .product--medium .product__media {
+      width: 60%;
+    }
+
+    .product--large .product__media {
+      width: 70%;
+    }
+
+    .product__buttons {
+      flex-direction: row;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .product__title {
+      font-size: 1.5rem;
+    }
+
+    .price--large {
+      font-size: 1.25rem;
+    }
+
+    .product__info-wrapper {
+      padding: 1rem 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Featured product",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        }
+      ],
+      "default": "background-1",
+      "label": "Color scheme"
+    },
+    {
+      "type": "checkbox",
+      "id": "secondary_background",
+      "default": false,
+      "label": "Show background"
+    },
+    {
+      "type": "select",
+      "id": "media_size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium",
+      "label": "Media size"
+    },
+    {
+      "type": "checkbox",
+      "id": "constrain_to_viewport",
+      "default": true,
+      "label": "Constrain image height to screen"
+    },
+    {
+      "type": "select",
+      "id": "media_fit",
+      "label": "Media fit",
+      "options": [
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "cover",
+          "label": "Cover"
+        }
+      ],
+      "default": "contain",
+      "info": "Learn more about [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit)"
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Media position"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Text alignment"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured product"
+    }
+  ]
+}
+{% endschema %}
